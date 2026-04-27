@@ -1,0 +1,83 @@
+What Is MongoDB Visualiser?
+MongoDB Visualiser is a lightweight, self-hosted web application that gives your team a secure, browser-based window into any number of MongoDB instances — without installing a single extra database or managing complex infrastructure. It ships as a single binary (or Docker container) and is ready in minutes.
+
+Key Selling Points
+    • 🚀  Zero-Dependency Deployment Deploy on any Linux server or run in Docker — no external database, no cloud dependency.
+    • 🌐  Multi-Server Support Connect and manage multiple MongoDB instances from one unified dashboard.
+    • 🔐  Role-Based Access Control Super-admin controls who can see which servers. Users only access what they're authorised for.
+    • ��️  Security First All configuration and credentials are encrypted at rest with AES-128-CBC + HMAC-SHA256 (Fernet). Passwords are hashed with bcrypt. Sessions use signed, HTTP-only JWT cookies.
+    • 📊  Full MongoDB Browser Browse databases → collections → documents in a clean, responsive interface with mobile support.
+    • 🔍  Advanced Query & Aggregation Run JSON filter, sort, and projection queries directly in the browser. Built-in aggregation pipeline editor with live preview.
+    • 📑  Index Viewer View and inspect collection indexes without touching a terminal.
+    • 📈  Storage & Stats Dashboard See database and collection sizes, document counts and storage stats at a glance.
+    • ⚡  High-Performance Go Backend Built with Go + Fiber for minimal memory footprint and fast response times. Concurrent data fetching keeps the UI snappy even with large datasets.
+    • 🐳  Docker-Ready Pre-built Docker image based on Alpine Linux. Single-command deployment via docker-compose.
+
+────────────────────────────────────────────────────────────────────────
+
+Feature Breakdown
+Authentication & Security
+    • Secure login form with bcrypt-hashed passwords
+    • JWT tokens stored in HTTP-only cookies (HS256 signing)
+    • Super-admin bootstrapped automatically from environment variables on first run
+    • AES-encrypted user and server configuration files on disk
+    • Auto-generated encryption key, or supply your own via environment variable
+
+Administration Panel
+    • Create, edit and delete user accounts
+    • Assign one or more MongoDB servers to each user
+    • Enable or disable user accounts without deleting them
+    • Add, edit and remove MongoDB server connections (host, port, credentials, default DB)
+    • Descriptions and nicknames for every server for easy identification
+
+MongoDB Data Browser
+    • List all databases with storage size and collection count
+    • List all collections with document count, storage size and index count
+    • Browse documents with configurable pagination (up to 100 per page)
+    • JSON filter queries — e.g. {"status": "active"}
+    • JSON sort control — e.g. {"createdAt": -1}
+    • JSON projection — include or exclude specific fields
+    • MaxTimeMS query timeout to protect against expensive queries
+    • Aggregation pipeline editor with adjustable preview limit (1–500 documents)
+    • Collection index listing — view index names, keys, and options
+    • Sidebar navigation: switch databases and collections without leaving the page
+
+User Experience
+    • Responsive design — works on desktop, tablet and mobile
+    • Font Awesome icons for intuitive navigation
+    • Human-readable file sizes (B / kB / MB / GB / TB) and document counts (K / M / B)
+    • Expand/collapse individual JSON documents for comfortable reading
+    • Tab-based collection view: Documents | Indexes | Aggregation
+    • Error messages surfaced inline — no cryptic error pages
+
+────────────────────────────────────────────────────────────────────────
+
+Technology Stack
+Language:  Go 1.25
+Web Framework:  Fiber v2 (fasthttp-based, extremely low overhead)
+Templating:  Go html/template via gofiber/template
+Database Driver:  mongo-driver v1 (official MongoDB Go driver)
+Encryption:  Fernet (AES-128-CBC + HMAC-SHA256) via fernet-go
+Auth:  golang-jwt/jwt v5, bcrypt via golang.org/x/crypto
+Frontend:  Custom CSS + Font Awesome + vanilla JS
+Deployment:  Docker (Alpine 3.21 base image), docker-compose
+
+────────────────────────────────────────────────────────────────────────
+
+Who Is It For?
+    • Development Teams Quickly inspect and query MongoDB databases during development without CLI tools.
+    • QA / Support Engineers Browse production data securely without granting shell access.
+    • Startups & SMEs Affordable, self-hosted alternative to cloud-based MongoDB GUIs.
+    • Enterprise IT Centralised, role-controlled access to multiple MongoDB environments.
+    • DevOps / SRE Monitor database storage stats and query collections during incident triage.
+
+────────────────────────────────────────────────────────────────────────
+
+Getting Started in 3 Steps
+    1. Copy .env.example to .env and set your super admin credentials.
+    2. Run docker-compose up  (or execute the single binary directly).
+    3. Open http://localhost:7000 — log in and start browsing your MongoDB servers.
+
+────────────────────────────────────────────────────────────────────────
+MongoDB Visualiser — Self-hosted · Secure · Simple
+Built by ProbePlusDevTeam
